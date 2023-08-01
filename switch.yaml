@@ -1,0 +1,34 @@
+blueprint:
+  name: Turn 
+  description: Turn lights off at defined time
+  domain: automation
+  input:
+    time_entity:
+      name: Time
+      selector:
+        time:
+    light_entity:
+      name: Light
+      selector:
+        target:
+          entity:
+            domain: light
+    transition_time:
+      name: Transition
+      selector:
+        number:
+          min: 0
+          max: 180
+          step: 10
+          unit_of_measurement: sec
+          mode: slider
+
+trigger:
+  platform: time
+  at: !input time_entity
+
+action:
+  - service: light.turn_off
+    target: !input light_entity
+    data:
+      transition: !input transition_time
