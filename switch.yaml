@@ -1,4 +1,3 @@
-REMO
 blueprint:
   name: Turn 
   description: Turn lights off at defined time
